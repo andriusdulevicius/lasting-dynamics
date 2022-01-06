@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import useInput from '../hook/useInput';
+import { FormControl, FormLabel, FormGroup, Button } from '@mui/material';
 
 const SimpleInput = () => {
   const {
@@ -38,16 +39,16 @@ const SimpleInput = () => {
   };
 
   return (
-    <form onSubmit={formSubmissionhandler}>
-      <div className={'form-control ' + (nameInputHasError && 'invalid')}>
-        <label htmlFor='name'>Your Name</label>
+    <FormGroup onSubmit={formSubmissionhandler}>
+      <FormControl className={nameInputHasError && 'invalid'}>
+        <FormLabel htmlFor='name'>Your Name</FormLabel>
         <input onChange={nameChangeHandler} onBlur={nameInputBlurHandler} type='text' id='name' value={enteredName} />
         {nameInputHasError && (
           <p className='error-text'>Name must be at least 3 chars long and can contain only letters and spaces</p>
         )}
-      </div>
-      <div className={'form-control ' + (emailInputHasError && 'invalid')}>
-        <label htmlFor='name'>Your Email</label>
+      </FormControl>
+      <FormControl className={emailInputHasError && 'invalid'}>
+        <FormLabel htmlFor='name'>Your Email</FormLabel>
         <input
           onChange={emailChangeHandler}
           onBlur={emailInputBlurHandler}
@@ -56,11 +57,13 @@ const SimpleInput = () => {
           value={enteredEmail}
         />
         {emailInputHasError && <p className='error-text'>Enter a valid email</p>}
+      </FormControl>
+      <div>
+        <Button variant='contained' style={{ marginTop: '1rem' }} disabled={!formIsValid}>
+          Submit
+        </Button>
       </div>
-      <div className='form-actions'>
-        <button disabled={!formIsValid}>Submit</button>
-      </div>
-    </form>
+    </FormGroup>
   );
 };
 

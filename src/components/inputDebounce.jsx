@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { FormControl, FormLabel, FormGroup, Button } from '@mui/material';
 
 const InputDebounce = () => {
   const [enteredName, setEnteredName] = useState('');
@@ -28,18 +29,20 @@ const InputDebounce = () => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <FormGroup onSubmit={submitHandler}>
       {successMsg === '' && (
-        <div className={'form-control ' + (nameIsValid ? '' : 'invalid')}>
-          <label htmlFor='name'>Your Name</label>
+        <FormControl className={nameIsValid ? '' : 'invalid'}>
+          <FormLabel htmlFor='name'>Your Name</FormLabel>
           <input value={enteredName} onChange={nameInputChangeHandler} type='text' id='name' />
-        </div>
+        </FormControl>
       )}
       {successMsg !== '' && <h2>{successMsg}</h2>}
       <div className='form-actions'>
-        <button disabled={!nameIsValid}>Submit</button>
+        <Button variant='contained' style={{ marginTop: '1rem' }} disabled={!nameIsValid}>
+          Submit
+        </Button>
       </div>
-    </form>
+    </FormGroup>
   );
 };
 

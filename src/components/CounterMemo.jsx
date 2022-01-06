@@ -1,4 +1,6 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo } from 'react';
+import Button from '@mui/material/Button';
+import { CardActionArea } from '@mui/material';
 
 function slowFunction(num) {
   for (let index = 0; index < 100000000; index++) {
@@ -21,12 +23,14 @@ const CounterMemo = () => {
   }
 
   return (
-    <div style={{ backgroundColor: themeOn ? 'black' : 'white', color: themeOn ? 'white' : 'black' }}>
+    <CardActionArea style={{ backgroundColor: themeOn ? 'black' : 'white', color: themeOn ? 'white' : 'black' }}>
       <h1>Counter</h1>
       <input value={counter} onChange={(e) => setCounter(e.target.value)} type='number' placeholder='enter number' />
-      <button onClick={themeHandler}>Toggle theme</button>
+      <Button variant='contained' onClick={themeHandler}>
+        Toggle theme
+      </Button>
       <h2>{numberCalculated}</h2>
-    </div>
+    </CardActionArea>
   );
 };
 
